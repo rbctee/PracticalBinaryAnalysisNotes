@@ -1,0 +1,6 @@
+*.exe
+*.out
+*.s
+*.i
+.vscode/
+__pycache__/

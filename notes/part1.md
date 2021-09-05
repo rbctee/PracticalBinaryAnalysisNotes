@@ -69,3 +69,52 @@ Strip symbols from an ELF executable:
 strip --strip-all a.out
 ```
 
+Show full contents of a specific section of an object file:
+
+```bash
+objdump -sj .rodata file.o
+```
+
+Show disassembly of instructions in an object file:
+
+```bash
+objdump -M intel -d file.o
+```
+
+Show relocation table of an ELF executable:
+
+```bash
+readelf --relocs file.o
+```
+
+Disassemble all sections:
+
+```bash
+objdump -M intel -d file.out
+```
+
+In the case of a stripped binary, the functions are all merged into a single blob of code, in the `.text` section.
+
+## ELF format
+
+> When you decide to run a binary, the operating system starts by setting up a new process for the program to run in, including a virtual address space.
+>
+> Subsequently, the operating system maps an interpreter into the process’s virtual memory. This is a user space program that knows how to load the binary and perform the necessary relocations.
+>
+> On Linux, the interpreter is typically a shared library called `ld-linux.so`.
+>
+> On Windows, the interpreter functionality is implemented as part of `ntdll.dll`.
+>
+> After loading the interpreter, the kernel transfers control to it, and the interpreter begins its work in user space.
+
+You can find the interpreter of a compiled program (after the linking phase) with `readelf`:
+
+```bash
+# -p: Displays the contents of the indicated section as printable strings.
+readelf -p .interp PROGRAM
+```
+
+> What is *lazy binding*?
+
+Basically the interpreter doesn't resolve the references (to functions stored inside dynamic libraries) at load time, but only when they are invoked.
+

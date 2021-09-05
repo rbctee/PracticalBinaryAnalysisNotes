@@ -1,3 +1,6 @@
+#include <string>
+
 int main() {
-    return 1212;
+    printf("Hello World!");
+    return 1;
 }

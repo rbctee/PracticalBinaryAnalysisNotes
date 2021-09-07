@@ -3,5 +3,6 @@
 *.o
 *.s
 *.i
+*.stripped
 .vscode/
 __pycache__/

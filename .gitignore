@@ -6,3 +6,4 @@
 *.stripped
 .vscode/
 __pycache__/
+bin/

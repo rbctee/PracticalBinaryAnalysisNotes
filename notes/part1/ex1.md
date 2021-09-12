@@ -64,7 +64,7 @@ gcc -w -o ex1 ex1.cpp
 
 > Locating the functions in the assembly file ...
 
-The functions are defined globally and the code is stored in sections like `_Z3addii` and `_Z3subii` (supposedly ii refers to the two integer paramters passed to the functions).
+The functions are defined globally and the code is stored in sections like `_Z3addii` and `_Z3subii` (supposedly it refers to the 2 integer parameters passed to the functions).
 
 Example:
 
@@ -146,12 +146,15 @@ Or using `objdump` the same way I did for the object file.
 
 ## Stripping
 
-To strip the exe:
+To strip the files:
 
 ```bash
-strip -o ex1.stripped ex1
+# object file
+strip -o ex1.o.stripped ex1.o
 
-# or during compilation
-# 
+
+# executable binary
+strip -o ex1.stripped ex1
 ```
 
+As regards the first one, after stripping it, the only function that remains in the `.text` is `main`. Same thing applies to the binary too: the `main` the only function that remains.
